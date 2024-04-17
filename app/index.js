@@ -13,7 +13,7 @@ const welcomeScreen = () => {
     <View style={styles.container}>
       <StatusBar style="light"/>
       <Image 
-      source={require('../assets/images/welcome2.jpg')}
+      source={require('../assets/images/welcome.jpg')}
       style={styles.bgImage}
       resizeMode='cover'
       />

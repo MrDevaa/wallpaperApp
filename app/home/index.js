@@ -4,6 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { Feather, FontAwesome6, Ionicons } from '@expo/vector-icons';
 import { theme } from '../../constants/theme';
 import { hp, wp } from '../../helpers/common';
+import Categories from '../../components/categories';
 
 
 const HomeScreen = () => {
@@ -51,6 +52,10 @@ const HomeScreen = () => {
             )
           }
       </View>
+      {/* Categories */}
+      <View style={styles.categories}>
+        <Categories />
+        </View>
     </ScrollView>
 
     </View>
