@@ -13,7 +13,7 @@ const formatUrl= (params)=> { // {query, page, category, order}
         url += `&${key}=${value}`;
     });
 
-    console.log('final URL : ', url);
+    // console.log('final URL : ', url);
     return url;
 }
 
