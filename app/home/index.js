@@ -22,7 +22,7 @@ const HomeScreen = () => {
     fetchImages();
   }, [])
 
-  const fetchImages = async (params={page: 1}, append=true)=> {
+  const fetchImages = async (params={page: 1}, append=false)=> {
     let res = await apiCall(params);
     // console.log('got results : ', res.data?.hits[0]);
     if (res.success && res?.data?.hits) {
