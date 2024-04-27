@@ -39,6 +39,7 @@ const customBackdrop = ({animatedIndex, style}) => {
         )
 }
 
+//styleSheet // css
 const styles = StyleSheet.create({
     container: {
       flex: 1,
