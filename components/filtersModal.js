@@ -3,6 +3,10 @@ import React, { useMemo } from 'react'
 import { BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet';
 import { BlurView } from 'expo-blur';
 import Animated, { Extrapolation, interpolate, useAnimatedStyle } from 'react-native-reanimated';
+import { hp } from '../helpers/common';
+import { theme } from '../constants/theme';
+
+
 
 
 const FilterModal = ({modalRef}) => {
@@ -23,11 +27,53 @@ const FilterModal = ({modalRef}) => {
     <BottomSheetView style={styles.contentContainer}>
         <View style={styles.content}>
           <Text style={styles.filterText}> Filters </Text>
+          {
+            Object.keys(sections).map((sectionName, index)=> {
+                let sectionView = sections[sectionName];
+                return (
+                  <View>
+                    <SectionView
+                          title={sectionName}
+                          content={sectionView({})}
+                    />
+                  </View>
+                )
+            })
+          }
+
         </View>
->    </BottomSheetView>
+    </BottomSheetView>
   </BottomSheetModal>
   )
 }
+
+const sections = {
+  "order": (props)=> <OrderView {...props} />,
+  "orientation": (props)=> <OrderView {...props} />,
+  "type": (props)=> <OrderView {...props} />,
+  "colors": (props)=> <OrderView {...props} />
+}
+
+const OrderView = ()=> {
+  return(
+    <View>
+      <Text>
+        Order View
+      </Text>
+    </View>
+  )
+}
+
+const SectionView = ()=> {
+    return(
+      <View>
+        <Text>
+          Section View
+        </Text>
+      </View>
+    )
+}
+
 
 const customBackdrop = ({animatedIndex, style}) => {
 
@@ -66,18 +112,32 @@ const customBackdrop = ({animatedIndex, style}) => {
 
 //styleSheet // css
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      padding: 24,
-      justifyContent: 'center',
-      backgroundColor: 'grey',
-    },
+    // container: {
+    //   flex: 1,
+    //   padding: 24,
+    //   justifyContent: 'center',
+    //   backgroundColor: 'grey',
+    // },
     contentContainer: {
       flex: 1,
       alignItems: 'center',
     },
     overlay: {
         backgroundColor: 'rgba(0,0,0,0.5)'
+    },
+    content: {
+      // flex: 1,
+      // backgroundColor: 'red',
+      width:'100%',
+      gap: 15,
+      paddingVertical: 10,
+      paddingHorizontal: 20
+    },
+    filterText: {
+      fontSize: hp(4),
+      fontWeight: theme.fontWeights.semibold,
+      color: theme.colors.neutral(0.8),
+      marginBottom: 5
     }
   });
 
