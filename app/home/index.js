@@ -14,6 +14,7 @@ var page = 1;
 
 const HomeScreen = () => {
 
+
   const {top} = useSafeAreaInsets();
   const paddingTop = top>0? top+10: 30;
   const [search, setSearch] = useState('');
@@ -22,6 +23,7 @@ const HomeScreen = () => {
   const searchInputRef = useRef(null);
   const modalRef = useRef(null);
 
+  //use effect
   useEffect(()=> {
     fetchImages();
   }, [])
