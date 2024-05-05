@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Pressable, ScrollView, TextInput  } from 'react-native'
+import { View, Text, StyleSheet, Pressable, ScrollView, TextInput, ActivityIndicator  } from 'react-native'
 import React, {useCallback, useEffect, useRef, useState } from 'react'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { Feather, FontAwesome6, Ionicons } from '@expo/vector-icons';
@@ -7,7 +7,7 @@ import { hp, wp } from '../../helpers/common';
 import Categories from '../../components/categories';
 import { apiCall } from '../../api';
 import ImageGrid from '../../components/imageGrid';
-import { debounce } from 'lodash';
+import { debounce, map } from 'lodash';
 import FilterModal from '../../components/filtersModal';
 
 var page = 1;
@@ -51,12 +51,33 @@ const HomeScreen = () => {
 }
 
   const applyFilters = () =>{
-    console.log('applying Filters');
+    if (filters){
+      page = 1;
+      setImages([]);
+      let params = {
+            page,
+            ...filters
+      }
+      if (activeCategory) params.category = activeCategory;
+      if (search) params.q = search;
+      fetchImages(params, false);
+
+    }
     closeFiltersModal();
   }
 
   const resetFilters = () =>{
-    setFilters(null);
+    if (filters) {
+      page = 1;
+      setFilters(null);
+      setImages([]);
+      let params = {
+            page,
+      }
+      if (activeCategory) params.category = activeCategory;
+      if (search) params.q = search;
+      fetchImages(params, false);
+    }
     closeFiltersModal();
     // console.log('resetting Filters');
   }
@@ -67,7 +88,8 @@ const HomeScreen = () => {
             setImages([]); 
             page = 1;
             let params = {
-              page, 
+              page,
+              ...filters
             }
             if (cat) params.category = cat;
             fetchImages(params, false);
@@ -77,11 +99,11 @@ const HomeScreen = () => {
     // console.log('searching for: ', text);
     setSearch(text);
     if (text.length>2) {
-      //search for the texte
+      //search for the text
       page= 1;
       setImages([]);
       setActiveCategory(null); // clear the search when the user search 
-      fetchImages({page, q: text}, false);
+      fetchImages({page, q: text, ...filters}, false);
     }
     if (text=="") {
       // reset results
@@ -89,7 +111,7 @@ const HomeScreen = () => {
       searchInputRef?.current?.clear();
       setImages([]);
       setActiveCategory(null); // clear the search when the user search 
-      fetchImages({page}, false);
+      fetchImages({page, ...filters}, false);
     }
   }
 
@@ -147,12 +169,37 @@ const HomeScreen = () => {
         <Categories activeCategory={activeCategory} handleChangeCategory={handleChangeCategory}/>
         </View>
 
+        {/* filters */}
+        {
+          filters && (
+            <View >
+              <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.filters}>
+                {
+                  Object.keys(filters).map((key, index)=> {
+                    return (
+                      <View key={key} style={styles.filterItem}>
+                        <Text style={styles.filterItemText}>
+                          {filters[key]}
+                        </Text>
+                      </View>
+                    )
+                  })
+                }
+              </ScrollView>
+            </View>
+          )
+        }
+
         {/*images architecture grid */}
         <View>
           {
             images.length>0 && <ImageGrid images={images}/>
           }
         </View>
+          {/*Loading ... */}
+          <View style={{marginBottom: 70, marginTop: images.length>0? 10: 70}}>
+            <ActivityIndicator size="large" />
+          </View>
     </ScrollView>
 
         {/*filters Modal */}
