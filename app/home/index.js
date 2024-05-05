@@ -46,19 +46,19 @@ const HomeScreen = () => {
         modalRef?.current?.present();
   }
 
-
   const closeFiltersModal = () =>{
       modalRef?.current?.close();
 }
 
   const applyFilters = () =>{
     console.log('applying Filters');
-    closeFiltersModal;
+    closeFiltersModal();
   }
 
   const resetFilters = () =>{
-    console.log('resetting Filters');
-    closeFiltersModal;
+    setFilters(null);
+    closeFiltersModal();
+    // console.log('resetting Filters');
   }
 
   const handleChangeCategory = (cat)=> {

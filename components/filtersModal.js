@@ -14,8 +14,8 @@ import { data } from '../constants/data';
 const FilterModal = ({
       modalRef,
       onClose,
-      OnApply,
-      OnReset,
+      onApply,
+      onReset,
       filters,
       setFilters
 
@@ -62,15 +62,15 @@ const FilterModal = ({
           {/*Actions */}
           <View style={styles.buttons}>
             {/*ResetButton */}
-              <Pressable style={styles.resetButton} onPress={OnReset}>
+              <Pressable style={styles.resetButton} onPress={onReset}>
                 <Text style={[styles.buttonText, {color: theme.colors.neutral(0.9)}]}>Reset</Text>
               </Pressable>
               {/*ApplyButton */}
-              <Pressable style={styles.applyButton} onPress={OnApply}>
+              <Pressable style={styles.applyButton} onPress={onApply}>
                 <Text style={[styles.buttonText, {color: theme.colors.white}]}>Apply</Text>
               </Pressable>
           </View>
-
+          
         </View>
     </BottomSheetView>
   </BottomSheetModal>

@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, Pressable } from "react-native"
 import { hp } from "../helpers/common"
 import { theme } from "../constants/theme"
-import { capitalize, iteratee } from "lodash"
+import { capitalize } from "lodash"
 
 export const SectionView = ({title, content})=> {
     return(
@@ -50,7 +50,6 @@ export const ColorFilter = ({data, filterName, filters, setFilters})=> {
     const onSelect = (item)=> {
         setFilters({...filters, [filterName]: item})
     }
-
     return(
       <View style={styles.flexRowWrap}>
         {
