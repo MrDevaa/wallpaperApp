@@ -5,11 +5,21 @@ import { BlurView } from 'expo-blur';
 import Animated, { Extrapolation, interpolate, useAnimatedStyle } from 'react-native-reanimated';
 import { hp } from '../helpers/common';
 import { theme } from '../constants/theme';
+import { CommonFilterRow, SectionView } from './filterViews';
+import { capitalize } from 'lodash';
+import { data } from '../constants/data';
 
 
 
+const FilterModal = ({
+      modalRef,
+      onClose,
+      OnApply,
+      OnReset,
+      filters,
+      setFilters
 
-const FilterModal = ({modalRef}) => {
+}) => {
 
       // variables
         const snapPoints = useMemo(() => ['75%'], []);
@@ -30,11 +40,19 @@ const FilterModal = ({modalRef}) => {
           {
             Object.keys(sections).map((sectionName, index)=> {
                 let sectionView = sections[sectionName];
+                let sectionData = data.filters[sectionName];
+                let title = capitalize(sectionName);
                 return (
-                  <View>
+                  <View key={sectionName}>
                     <SectionView
-                          title={sectionName}
-                          content={sectionView({})}
+                          title={title}
+                          content={sectionView({
+                              data: sectionData,
+                              filters,
+                              setFilters,
+                              filterName: sectionName
+                          
+                          })}
                     />
                   </View>
                 )
@@ -48,30 +66,10 @@ const FilterModal = ({modalRef}) => {
 }
 
 const sections = {
-  "order": (props)=> <OrderView {...props} />,
-  "orientation": (props)=> <OrderView {...props} />,
-  "type": (props)=> <OrderView {...props} />,
-  "colors": (props)=> <OrderView {...props} />
-}
-
-const OrderView = ()=> {
-  return(
-    <View>
-      <Text>
-        Order View
-      </Text>
-    </View>
-  )
-}
-
-const SectionView = ()=> {
-    return(
-      <View>
-        <Text>
-          Section View
-        </Text>
-      </View>
-    )
+  "order": (props)=> <CommonFilterRow {...props} />,
+  "orientation": (props)=> <CommonFilterRow {...props} />,
+  "type": (props)=> <CommonFilterRow {...props} />,
+  "colors": (props)=> <CommonFilterRow {...props} />
 }
 
 
