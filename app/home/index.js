@@ -30,7 +30,7 @@ const HomeScreen = () => {
   }, [])
 
   const fetchImages = async (params={page: 1}, append=false)=> {
-    console.log('params: ', params, append);
+    // console.log('params: ', params, append);
 
     let res = await apiCall(params);
     // console.log('got results : ', res.data?.hits[0]);
@@ -99,6 +99,8 @@ const HomeScreen = () => {
   }
 
   const handleTextDebounce = useCallback(debounce(handleSearch, 400), []);
+
+  console.log('filters: ', filters);
 
   // console.log('active category: ', activeCategory);
 
