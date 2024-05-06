@@ -23,14 +23,16 @@ const HomeScreen = () => {
   const [activeCategory, setActiveCategory] = useState(null);
   const searchInputRef = useRef(null);
   const modalRef = useRef(null);
+  const scrollRef = useRef(null);
+  const [isEndReached, setIsEndReached] = useState(false);
 
   //use effect
   useEffect(()=> {
     fetchImages();
   }, [])
 
-  const fetchImages = async (params={page: 1}, append=false)=> {
-    // console.log('params: ', params, append);
+  const fetchImages = async (params={page: 1}, append=true)=> {
+     console.log('params: ', params, append);
 
     let res = await apiCall(params);
     // console.log('got results : ', res.data?.hits[0]);
@@ -137,17 +139,48 @@ const HomeScreen = () => {
     searchInputRef?.current?.clear();
   }
 
+  const handleScroll = (event) => {
+    // console.log('scroll event fired');
+    const contentHeight = event.nativeEvent.contentSize.height;
+    const scrollViewHeight = event.nativeEvent.layoutMeasurement.height;
+    const scorllOffset = event.nativeEvent.contentOffset.y;
+    const bottomPosition = contentHeight - scrollViewHeight;
+
+    if (scorllOffset>=bottomPosition-1) {
+      if (!isEndReached){
+          setIsEndReached(true);
+          console.log('reached the bottom of scrollView');
+          // fetch more images
+          ++page;
+          let params = {
+            page,
+            ...filters
+          }
+            if (activeCategory) params.category = activeCategory;
+            if (search) params.q = search;
+            fetchImages(params);
+      }
+    }else if(isEndReached){
+      setIsEndReached(false);
+    }
+  } 
+
+  const handleScrollUp = () => {
+    scrollRef?.current?.scrollTo({
+      y: 0,
+      animated: true
+    })
+  } 
+
   const handleTextDebounce = useCallback(debounce(handleSearch, 400), []);
-
   // console.log('filters: ', filters);
-
   // console.log('active category: ', activeCategory);
 
   return (
     <View style={[styles.container, {paddingTop}]}>
       {/*Header */}
         <View style={styles.header}>
-            <Pressable>
+            <Pressable onPress={handleScrollUp}>
                 <Text style={styles.title}>
                   Wallpaper
                 </Text>
@@ -158,6 +191,9 @@ const HomeScreen = () => {
         </View>
 
     <ScrollView
+      onScroll={handleScroll}
+      scrollEventThrottle={5} // how ofter scroll event will fire while scrolling (in ms)
+      ref={scrollRef}
       contentContainerStyle={{gap: 15}}
     
     >
