@@ -6,7 +6,7 @@ import { theme } from '../constants/theme';
 
 
 
-const ImageCard = ({item, index, columns}) => {
+const ImageCard = ({item, index, columns, router}) => {
 
 
 
@@ -21,7 +21,7 @@ const ImageCard = ({item, index, columns}) => {
 
 
   return (
-    <Pressable style={[styles.imageWrapper, !isLastInRow() && styles.spacing]}>
+    <Pressable onPress={()=> router.push({pathname: 'home/image', params: {...item}})} style={[styles.imageWrapper, !isLastInRow() && styles.spacing]}>
       <Image
         style={[styles.image, getImageHeight()]}
         source={item?.webformatURL}
