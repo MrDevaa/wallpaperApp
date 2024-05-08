@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Button } from 'react-native'
+import { View, Text, StyleSheet, Button, Platform, ActivityIndicator } from 'react-native'
 import React, { useState } from 'react'
 import { BlurView } from 'expo-blur'
 import { wp } from '../../helpers/common'
@@ -10,9 +10,27 @@ import { theme } from '../../constants/theme';
 const ImageScreen = () => {
   const router = useRouter();
   const item = useLocalSearchParams();
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState('loading');
   let uri = item?.webformatURL;
   // console.log('image:', item);
+
+
+  const getSize = ()=> {
+
+    const aspectRatio = item?.imageWidth / item?.imageHeight;
+
+    const maxWidth = Platform.OS == 'web'? wp(50): wp(92);
+    let calculatedHeight = maxWidth / aspectRatio;
+    let calculatedWidth = maxWidth;
+
+    if(aspectRatio<1) { // portrait image
+      calculatedWidth = calculatedHeight * aspectRatio;
+    }
+    return{
+      width: calculatedWidth,
+      height: calculatedHeight,
+    }
+  }
 
 
   const onLoad = () => {
@@ -25,10 +43,15 @@ const ImageScreen = () => {
         tint='dark'
         intensity={60}
     >
-      <View style={[]}>
+      <View style={getSize()}>
+        <View style={styles.loading}>
+          {
+            status=='loading' && <ActivityIndicator size="large" color="white" />
+          }
+        </View>
         <Image 
               transition={100}
-              style={[styles.image]}
+              style={[styles.image, getSize()]}
               source={uri}
               onLoad={onLoad}
         />
@@ -52,7 +75,13 @@ const styles = StyleSheet.create({
       borderWidth: 2,
       backgroundColor: 'rgba(225,225,225,0.1)',
       borderColor: 'rgba(225,225,225,0.1)',
-
+      },
+      loading: {
+        position:'absolute',
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center',
+        alignItems: 'center',        
       }
 })
 
