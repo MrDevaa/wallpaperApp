@@ -61,6 +61,7 @@ const ImageScreen = () => {
   )
 }
 
+// adding filter and TOAST with react but issue to be fixed
 
 const styles = StyleSheet.create({
     container: {
