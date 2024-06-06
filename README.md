@@ -1,4 +1,5 @@
-Video : filtring modal 
+Le Projet est en cours de développement 
+- test unitaire à réaliser...
 
 // infos complémentaire
 - react native 
