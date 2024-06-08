@@ -3,6 +3,10 @@ Le Projet est en cours de développement
 - via jest
 - deploy app if === ok
 
+- Remerciement
+- LicenceT
+- 
+
 
 // infos complémentaire
 - react native 
