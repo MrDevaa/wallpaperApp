@@ -1,5 +1,6 @@
 Le Projet est en cours de développement 
-- test unitaire à réaliser...
+-updated to netlify 
+- test unitaire à réaliser... 
 - via jest
 - deploy app if === ok
 
