@@ -1,4 +1,7 @@
 Le Projet est en cours de développement 
+- do figma mcokups
+- getting trial video
+- getting seo referencement if possible
 -updated to netlify 
 - test unitaire à réaliser... 
 - via jest
