@@ -6,6 +6,7 @@ Le Projet est en cours de développement
 - test unitaire à réaliser... 
 - via jest
 - deploy app if === ok
+- addes to netlfiy for demo project
 
 - Remerciement
 - LicenceT
