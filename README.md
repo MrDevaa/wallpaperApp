@@ -29,3 +29,13 @@ Wallpaper App is a mobile application built in React Native for displaying image
    cd repository-name
    
 2. Install dependencies
+    ```bash
+    npm install
+
+3. Configure Pixabay API
+   - Get an API key from Pixabay API
+   - Create a .env file in the project root and add your API key:
+
+    ```bash
+      PIXABAY_API_KEY=your_pixabay_api_key
+
