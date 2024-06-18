@@ -1,19 +1,3 @@
-Le Projet est en cours de développement 
-- do figma mcokups
-- getting trial video
-- getting seo referencement if possible
--updated to netlify 
-- test unitaire à réaliser... 
-- via jest
-- deploy app if === ok
-- addes to netlfiy for demo project
-
-- Remerciement
-- LicenceT
-- Link
-- etc....
-
-
 // infos complémentaire
 - react native 
 - npm (node packaging module)
