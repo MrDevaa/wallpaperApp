@@ -1,36 +1,31 @@
-// infos complémentaire
-- react native 
-- npm (node packaging module)
-- npm 'expo-linear-gradient'
-- npm "@expo/vector-icons"
+# Wallpaper App
 
-// site used
-- https://docs.expo.dev/router/installation/
-- https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/getting-started/
-- https://pixabay.com/api/docs/
+Wallpaper App is a mobile application built in React Native for displaying images categorized and filterable, akin to Pinterest. It leverages the Pixabay API to fetch images.
 
-// icon used
-- https://icons.expo.fyi/Index
+## Features
 
-//reference APi
-- https://pixabay.com/api/docs/
+- Display images by categories
+- Filter images
+- Integration with Pixabay API
 
+## Technologies Used
 
-// format json
-- https://jsonformatter.org/json-pretty-print
+- React Native
+- Node.js (npm)
+- Expo for mobile development
 
-// layout for images // flashList // shopify
-- https://shopify.github.io/flash-list/docs/
+## Main NPM Dependencies
 
-// command Error - android.package in app.json
-- https://stackoverflow.com/questions/58359479/getting-error-your-project-must-have-an-android-package-set-in-app-json-despit
+- `expo-linear-gradient`
+- `@expo/vector-icons`
+- `@gorhom/bottom-sheet`
+- `expo-blur`
 
-// expooo image 
-- https://docs.expo.dev/versions/latest/sdk/image/
+## Installation
 
-// filter modal 
-- npm i @gorhom/bottom-sheet
-- https://ui.gorhom.dev/components/bottom-sheet/
-
-// Expo blur View
-- https://docs.expo.dev/versions/latest/sdk/blur-view/
+1. Clone the repository
+   ```bash
+   git clone https://github.com/your-username/repository-name.git
+   cd repository-name
+   
+2. Install dependencies
