@@ -13,6 +13,7 @@ Wallpaper App is a mobile application built in React Native for displaying image
 - React Native
 - Node.js (npm)
 - Expo for mobile development
+- Android Emulator
 
 ## Main NPM Dependencies
 
