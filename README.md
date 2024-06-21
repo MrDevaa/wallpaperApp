@@ -8,6 +8,9 @@ Wallpaper App is a mobile application built in React Native for displaying image
 - Filter images
 - Integration with Pixabay API
 
+- *
+- ==
+
 ## Technologies Used
 
 - React Native
