@@ -43,9 +43,9 @@ Wallpaper App is a mobile application built in React Native for displaying image
 4. Configure Pixabay API
    - Use Android Studio emulator or iOS simulator to preview the app.
    ```bash
-   npm start ios // for IOS
-   npm start android // for android
-   npm stat // for Web
+   npm start ios // for IOS..
+   npm start android // for android..
+   npm stat // for Web..
 
 ## Documentation and Resources
 
