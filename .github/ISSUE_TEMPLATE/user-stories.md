@@ -8,7 +8,8 @@ assignees: ''
 ---
 
 **As a** Developper  
- **I need** to have multiple counter
+ **I need** to have multiple counter.
+ 
  **So that** i can keep track of serveral counts at once
    
  ### Details and Assumptions
