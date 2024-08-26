@@ -16,12 +16,13 @@ assignees: ''
  **So that** i can scale capacity with user demand
    
  ### Details and Assumptions
- * [document what you know]
+- We will use IBM Cloud
+- Deploy as a Cloud Foundry App
    
  ### Acceptance Criteria  
    
  ```gherkin
- Given [some context]
- When [certain action is taken]
- Then [the outcome of action is observed]
+ Given I have deployed to the cloud
+ When a customer comes to our URL
+ Then our service will be available
  ```
