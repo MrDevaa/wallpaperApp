@@ -16,7 +16,7 @@ assignees: ''
  **So that** i can scale capacity with user demand
    
  ### Details and Assumptions
-- We will use IBM Cloud
+- We will use IBM Cloud, GCP, AWS, etc....
 - Deploy as a Cloud Foundry App
    
  ### Acceptance Criteria  
