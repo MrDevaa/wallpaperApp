@@ -1,5 +1,5 @@
 # Wallpaper App
-Le projet est en cours de développement.....
+Le projet est en cours de développement.
 
 Wallpaper App is a mobile application built in React Native for displaying images categorized and filterable, akin to Pinterest. It leverages the Pixabay API to fetch images.
 
